@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{water_meter}-{reading_date}",
+ "creation": "2024-07-29 12:46:25.178532",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "meter_reading_section",
+  "water_meter",
+  "reading_date",
+  "previous_reading",
+  "current_reading",
+  "consumed_quantity",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "meter_reading_section",
+   "fieldtype": "Section Break",
+   "label": "Meter Reading"
+  },
+  {
+   "fieldname": "water_meter",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Water Meter",
+   "options": "Water Meter",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reading_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Reading Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "previous_reading",
+   "fieldtype": "Float",
+   "label": "Previous Reading",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_reading",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Current Reading",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consumed_quantity",
+   "fieldtype": "Float",
+   "label": "Consumed Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Meter Reading",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Water Meter",
+   "link_fieldname": "meter_id"
+  }
+ ],
+ "modified": "2024-07-29 13:13:49.339507",
+ "modified_by": "Administrator",
+ "module": "Water Supply Management",
+ "name": "Meter Reading",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

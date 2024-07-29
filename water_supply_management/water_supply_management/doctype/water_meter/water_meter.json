@@ -1,0 +1,79 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{meter_id}-{customer}",
+ "creation": "2024-07-29 12:44:38.236382",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "water_meter_section",
+  "meter_id",
+  "customer",
+  "installation_date",
+  "meter_location"
+ ],
+ "fields": [
+  {
+   "fieldname": "water_meter_section",
+   "fieldtype": "Section Break",
+   "label": "Water Meter"
+  },
+  {
+   "fieldname": "meter_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Meter ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "installation_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Installation Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "meter_location",
+   "fieldtype": "Data",
+   "label": "Meter Location"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Customer",
+   "link_fieldname": "customer_name"
+  }
+ ],
+ "modified": "2024-07-29 12:51:04.152593",
+ "modified_by": "Administrator",
+ "module": "Water Supply Management",
+ "name": "Water Meter",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

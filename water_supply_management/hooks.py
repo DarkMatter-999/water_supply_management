@@ -33,6 +33,10 @@ app_license = "mit"
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
+doctype_js = {
+    "Meter Reading": "public/js/meter_reading.js"
+}
+
 # Svg Icons
 # ------------------
 # include app icons in desk
@@ -129,6 +133,12 @@ app_license = "mit"
 # 		"on_trash": "method"
 # 	}
 # }
+
+doc_events = {
+    "Meter Reading": {
+        "on_submit": "water_supply_management.api.create_sales_invoice"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
