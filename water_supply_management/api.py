@@ -1,40 +1,61 @@
 import frappe
 
-def create_sales_invoice(self, event):
-    meter_reading_doc = self
-    water_meter_doc = frappe.get_doc('Water Meter', meter_reading_doc.water_meter)
+@frappe.whitelist()
+def create_sales_invoice_on_submit(doc, method):
+    create_sales_invoice(doc.name)
 
-    customer = water_meter_doc.customer
+@frappe.whitelist()
+def get_previous_quantity(water_meter):
+    previous_reading = frappe.db.get_value('Meter Reading', {
+        'water_meter': water_meter,
+    }, 'current_reading', order_by='reading_date desc')
+    
+    return previous_reading if previous_reading is not None else 0
 
-    # Create Sales Invoice
-    invoice = frappe.get_doc({
-        'doctype': 'Sales Invoice',
-        'customer': customer,
-        'items': [
-            {
-                'item_code': 'Water Consumption',
-                'qty': meter_reading_doc.consumed_quantity,
-                'rate': 10  # Eg Fixed rate per unit
-            },
-            {
-                'item_code': 'Meter Rent',
-                'qty': 1,
-                'rate': 5  # Eg meter rent
-            },
-            {
-                'item_code': 'Water Tax',
-                'qty': 1,
-                'rate': 2  # Eg water tax
-            }
-        ],
-        'meter_reading': meter_reading_doc.name
-    })
 
-    invoice.insert()
-    invoice.submit()
+@frappe.whitelist()
+def create_sales_invoice(docname):
+    try:
+        meter_reading_doc = frappe.get_doc('Meter Reading', docname)
+        water_meter_doc = frappe.get_doc('Water Meter', meter_reading_doc.water_meter)
 
-    # Send notification
-    send_notification(customer, invoice.name)
+        customer = water_meter_doc.customer
+
+        # Create Sales Invoice
+        invoice = frappe.get_doc({
+            'doctype': 'Sales Invoice',
+            'customer': customer,
+            'items': [
+                {
+                    'item_code': 'Water Consumption',
+                    'qty': meter_reading_doc.consumed_quantity,
+                    'rate': frappe.db.get_single_value("Water Supply Billing Settings", "cost_per_unit")
+                },
+                {
+                    'item_code': 'Meter Rent',
+                    'qty': 1,
+                    'rate': frappe.db.get_single_value("Water Supply Billing Settings", "meter_rent")
+                },
+                {
+                    'item_code': 'Water Tax',
+                    'qty': 1,
+                    'rate': frappe.db.get_single_value("Water Supply Billing Settings", "water_tax")
+                }
+            ],
+            'meter_reading': meter_reading_doc.name
+        })
+
+        invoice.insert()
+        invoice.submit()
+
+        # Send notification
+        send_notification(customer, invoice.name)
+
+        return invoice.name
+
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), 'create_sales_invoice Error')
+        frappe.throw(f"Error creating Sales Invoice: {str(e)}")
 
 def send_notification(customer, invoice_name):
     # get customer's email

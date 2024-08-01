@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-07-29 15:40:13.189587",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "cost_per_unit",
+  "water_tax",
+  "meter_rent"
+ ],
+ "fields": [
+  {
+   "default": "10",
+   "fieldname": "cost_per_unit",
+   "fieldtype": "Float",
+   "label": "Cost per Unit"
+  },
+  {
+   "default": "2",
+   "fieldname": "water_tax",
+   "fieldtype": "Float",
+   "label": "Water Tax"
+  },
+  {
+   "default": "5",
+   "fieldname": "meter_rent",
+   "fieldtype": "Float",
+   "label": "Meter Rent"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-07-29 15:43:35.739899",
+ "modified_by": "Administrator",
+ "module": "Water Supply Management",
+ "name": "Water Supply Billing Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

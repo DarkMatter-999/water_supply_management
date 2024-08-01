@@ -136,7 +136,7 @@ doctype_js = {
 
 doc_events = {
     "Meter Reading": {
-        "on_submit": "water_supply_management.api.create_sales_invoice"
+        "on_submit": "water_supply_management.api.create_sales_invoice_on_submit"
     }
 }
 

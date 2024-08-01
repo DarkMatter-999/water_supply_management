@@ -3,9 +3,9 @@ frappe.ui.form.on('Meter Reading', {
         if (!frm.doc.__islocal && frm.doc.water_meter) {
             frm.add_custom_button(__('Create Sales Invoice'), function() {
                 frappe.call({
-                    method: 'utility_billing.api.create_sales_invoice',
+                    method: 'water_supply_management.api.create_sales_invoice',
                     args: {
-                        meter_reading: frm.doc.name
+                        docname: frm.doc.name,
                     },
                     callback: function(r) {
                         if (r.message) {
@@ -18,17 +18,40 @@ frappe.ui.form.on('Meter Reading', {
     },
     water_meter: function(frm) {
         if (frm.doc.water_meter) {
-            frappe.db.get_value('Meter Reading', {'water_meter': frm.doc.water_meter}, 'current_reading', 'reading_date desc')
-            .then(r => {
-                if (r.message && r.message.current_reading) {
-                    frm.set_value('previous_reading', r.message.current_reading);
-                } else {
-                    frm.set_value('previous_reading', 0);
+            frappe.call({
+                method: 'water_supply_management.api.get_previous_quantity',
+                args: {
+                    water_meter: frm.doc.water_meter,
+                },
+                callback: function(r) {
+                    if (r.message) {
+                        frm.set_value('previous_reading', r.message);
+                    } else {
+                        frm.set_value('previous_reading', 0);
+                    }
+
+                    // Calculate consumed quantity if current reading is already set
+                    if (frm.doc.current_reading != null) {
+                        frm.set_value('consumed_quantity', frm.doc.current_reading - frm.doc.previous_reading);
+                    }
                 }
             });
         }
     },
     current_reading: function(frm) {
+        // Check if current reading is less than previous reading
+        if (frm.doc.previous_reading && frm.doc.current_reading < frm.doc.previous_reading) {
+            frappe.msgprint(__("Current reading cannot be less than previous reading."));
+            frm.set_value('current_reading', frm.doc.previous_reading); // Reset to previous reading
+            return;
+        }
+
+        if (frm.doc.previous_reading != null && frm.doc.current_reading != null) {
+            frm.set_value('consumed_quantity', frm.doc.current_reading - frm.doc.previous_reading);
+        }
+    },
+    before_save: function(frm) {
+        // Ensure consumed quantity is calculated before saving
         if (frm.doc.previous_reading != null && frm.doc.current_reading != null) {
             frm.set_value('consumed_quantity', frm.doc.current_reading - frm.doc.previous_reading);
         }

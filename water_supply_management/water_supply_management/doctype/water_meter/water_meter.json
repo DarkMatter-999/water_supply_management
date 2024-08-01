@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{meter_id}-{customer}",
  "creation": "2024-07-29 12:44:38.236382",
@@ -53,7 +54,7 @@
    "link_fieldname": "customer_name"
   }
  ],
- "modified": "2024-07-29 12:51:04.152593",
+ "modified": "2024-08-01 12:23:35.192775",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Water Meter",
