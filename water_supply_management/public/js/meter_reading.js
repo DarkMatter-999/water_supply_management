@@ -1,6 +1,6 @@
 frappe.ui.form.on('Meter Reading', {
     refresh: function(frm) {
-        if (!frm.doc.__islocal && frm.doc.water_meter) {
+        if (!frm.doc.__islocal && frm.doc.water_meter && frm.doc.docstatus === 1) {
             frm.add_custom_button(__('Create Sales Invoice'), function() {
                 frappe.call({
                     method: 'water_supply_management.api.create_sales_invoice',
@@ -10,10 +10,15 @@ frappe.ui.form.on('Meter Reading', {
                     callback: function(r) {
                         if (r.message) {
                             frappe.msgprint(__('Sales Invoice created: {0}', [r.message]));
+
+                            // Redirect to the newly created Sales Invoice
+                            frappe.set_route('Form', 'Sales Invoice', r.message);
                         }
                     }
                 });
             });
+        } else {
+            frm.remove_custom_button(__('Create Sales Invoice'));
         }
     },
     water_meter: function(frm) {

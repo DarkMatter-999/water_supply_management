@@ -12,7 +12,8 @@
   "previous_reading",
   "current_reading",
   "consumed_quantity",
-  "amended_from"
+  "amended_from",
+  "meter_image"
  ],
  "fields": [
   {
@@ -63,6 +64,11 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "meter_image",
+   "fieldtype": "Attach Image",
+   "label": "Meter Image"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -73,7 +79,7 @@
    "link_fieldname": "meter_id"
   }
  ],
- "modified": "2024-07-29 13:13:49.339507",
+ "modified": "2024-08-02 10:48:31.697918",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Meter Reading",

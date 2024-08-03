@@ -1,10 +1,6 @@
 import frappe
 
 @frappe.whitelist()
-def create_sales_invoice_on_submit(doc, method):
-    create_sales_invoice(doc.name)
-
-@frappe.whitelist()
 def get_previous_quantity(water_meter):
     previous_reading = frappe.db.get_value('Meter Reading', {
         'water_meter': water_meter,
@@ -46,7 +42,6 @@ def create_sales_invoice(docname):
         })
 
         invoice.insert()
-        invoice.submit()
 
         # Send notification
         send_notification(customer, invoice.name)
