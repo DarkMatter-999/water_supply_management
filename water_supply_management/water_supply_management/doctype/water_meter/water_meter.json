@@ -11,7 +11,10 @@
   "meter_id",
   "customer",
   "installation_date",
-  "meter_location"
+  "address",
+  "meter_latitude",
+  "meter_longitude",
+  "meter_coordinates"
  ],
  "fields": [
   {
@@ -38,13 +41,29 @@
    "fieldname": "installation_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Installation Date",
-   "reqd": 1
+   "label": "Installation Date"
   },
   {
-   "fieldname": "meter_location",
+   "fieldname": "meter_coordinates",
+   "fieldtype": "Geolocation",
+   "label": "Meter Coordinates"
+  },
+  {
+   "fieldname": "meter_latitude",
+   "fieldtype": "Float",
+   "label": "Latitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "meter_longitude",
+   "fieldtype": "Float",
+   "label": "Longitude",
+   "precision": "6"
+  },
+  {
+   "fieldname": "address",
    "fieldtype": "Data",
-   "label": "Meter Location"
+   "label": "Address"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -54,7 +73,7 @@
    "link_fieldname": "customer_name"
   }
  ],
- "modified": "2024-08-01 12:23:35.192775",
+ "modified": "2024-08-03 22:08:52.336047",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Water Meter",
