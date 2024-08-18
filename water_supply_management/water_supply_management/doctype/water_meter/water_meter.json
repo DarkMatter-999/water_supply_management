@@ -2,19 +2,17 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "format:{meter_id}-{customer}",
+ "autoname": "format:{meter_id}--{name1}",
  "creation": "2024-07-29 12:44:38.236382",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "water_meter_section",
   "meter_id",
-  "customer",
   "installation_date",
-  "address",
-  "meter_latitude",
-  "meter_longitude",
-  "meter_coordinates"
+  "meter_manufacturing_company",
+  "name1",
+  "current_meter_reading"
  ],
  "fields": [
   {
@@ -30,40 +28,28 @@
    "reqd": 1
   },
   {
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Customer",
-   "options": "Customer",
-   "reqd": 1
-  },
-  {
    "fieldname": "installation_date",
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Installation Date"
   },
   {
-   "fieldname": "meter_coordinates",
-   "fieldtype": "Geolocation",
-   "label": "Meter Coordinates"
-  },
-  {
-   "fieldname": "meter_latitude",
-   "fieldtype": "Float",
-   "label": "Latitude",
-   "precision": "6"
-  },
-  {
-   "fieldname": "meter_longitude",
-   "fieldtype": "Float",
-   "label": "Longitude",
-   "precision": "6"
-  },
-  {
-   "fieldname": "address",
+   "fieldname": "meter_manufacturing_company",
    "fieldtype": "Data",
-   "label": "Address"
+   "label": "Meter Manufacturing Company"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "current_meter_reading",
+   "fieldtype": "Float",
+   "label": "Current Meter Reading",
+   "non_negative": 1,
+   "precision": "2",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -73,7 +59,7 @@
    "link_fieldname": "customer_name"
   }
  ],
- "modified": "2024-08-03 22:08:52.336047",
+ "modified": "2024-08-18 15:50:41.776802",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Water Meter",
@@ -95,5 +81,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
