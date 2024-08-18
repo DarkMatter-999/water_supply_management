@@ -8,16 +8,19 @@
   "meter_reading_section",
   "water_meter",
   "customer",
+  "driver_id",
+  "driver_name",
   "column_break_fkjs",
   "amended_from",
   "meter_image",
-  "naming_series",
+  "vehicle",
   "date_and_time_section",
   "reading_date",
   "column_break_krxj",
   "reading_time",
   "section_break_vmbn",
   "previous_reading",
+  "naming_series",
   "column_break_hzlf",
   "current_reading",
   "consumed_quantity"
@@ -126,6 +129,25 @@
    "print_hide": 1,
    "report_hide": 1,
    "set_only_once": 1
+  },
+  {
+   "fetch_from": "driver_id.full_name",
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "driver_id",
+   "fieldtype": "Link",
+   "label": "Driver ID",
+   "options": "Driver"
   }
  ],
  "hide_toolbar": 1,
@@ -137,7 +159,7 @@
    "link_fieldname": "meter_id"
   }
  ],
- "modified": "2024-08-18 16:44:40.713803",
+ "modified": "2024-08-18 17:58:00.754179",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Meter Reading",
