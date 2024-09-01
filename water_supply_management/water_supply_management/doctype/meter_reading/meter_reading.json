@@ -1,19 +1,29 @@
 {
  "actions": [],
- "allow_rename": 1,
- "autoname": "format:{water_meter}-{reading_date}",
+ "autoname": "naming_series:",
  "creation": "2024-07-29 12:46:25.178532",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "meter_reading_section",
   "water_meter",
-  "reading_date",
-  "previous_reading",
-  "current_reading",
-  "consumed_quantity",
+  "customer",
+  "driver_id",
+  "driver_name",
+  "column_break_fkjs",
   "amended_from",
-  "meter_image"
+  "meter_image",
+  "vehicle",
+  "date_and_time_section",
+  "reading_date",
+  "column_break_krxj",
+  "reading_time",
+  "section_break_vmbn",
+  "previous_reading",
+  "naming_series",
+  "column_break_hzlf",
+  "current_reading",
+  "consumed_quantity"
  ],
  "fields": [
   {
@@ -37,9 +47,11 @@
    "reqd": 1
   },
   {
+   "fetch_from": "water_meter.current_meter_reading",
    "fieldname": "previous_reading",
    "fieldtype": "Float",
    "label": "Previous Reading",
+   "non_negative": 1,
    "read_only": 1
   },
   {
@@ -69,8 +81,76 @@
    "fieldname": "meter_image",
    "fieldtype": "Attach Image",
    "label": "Meter Image"
+  },
+  {
+   "fieldname": "reading_time",
+   "fieldtype": "Time",
+   "label": "Reading time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fkjs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_and_time_section",
+   "fieldtype": "Section Break",
+   "label": "Date and Time"
+  },
+  {
+   "fieldname": "column_break_krxj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_vmbn",
+   "fieldtype": "Section Break",
+   "label": "Meter Reading"
+  },
+  {
+   "fieldname": "column_break_hzlf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "in_filter": 1,
+   "in_global_search": 1,
+   "label": "Naming Series",
+   "no_copy": 1,
+   "options": "MTR-READ-.YYYY.-.MM.-",
+   "print_hide": 1,
+   "report_hide": 1,
+   "set_only_once": 1
+  },
+  {
+   "fetch_from": "driver_id.full_name",
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "driver_id",
+   "fieldtype": "Link",
+   "label": "Driver ID",
+   "options": "Driver"
   }
  ],
+ "hide_toolbar": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [
@@ -79,11 +159,11 @@
    "link_fieldname": "meter_id"
   }
  ],
- "modified": "2024-08-02 10:48:31.697918",
+ "modified": "2024-08-18 17:58:00.754179",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Meter Reading",
- "naming_rule": "Expression",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -101,5 +181,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
