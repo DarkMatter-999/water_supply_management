@@ -67,8 +67,9 @@
   },
   {
    "fieldname": "meter_image",
-   "fieldtype": "Attach Image",
-   "label": "Meter Image"
+   "fieldtype": "Link",
+   "label": "Meter Image",
+   "options": "Meter Image"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -79,7 +80,7 @@
    "link_fieldname": "meter_id"
   }
  ],
- "modified": "2024-08-02 10:48:31.697918",
+ "modified": "2024-09-06 16:40:43.704861",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Meter Reading",

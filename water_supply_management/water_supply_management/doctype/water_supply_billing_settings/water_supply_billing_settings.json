@@ -7,7 +7,8 @@
  "field_order": [
   "cost_per_unit",
   "water_tax",
-  "meter_rent"
+  "meter_rent",
+  "image_api"
  ],
  "fields": [
   {
@@ -27,12 +28,17 @@
    "fieldname": "meter_rent",
    "fieldtype": "Float",
    "label": "Meter Rent"
+  },
+  {
+   "fieldname": "image_api",
+   "fieldtype": "Data",
+   "label": "ImageAPI URL"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-07-29 15:43:35.739899",
+ "modified": "2024-09-05 16:44:47.151032",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Water Supply Billing Settings",

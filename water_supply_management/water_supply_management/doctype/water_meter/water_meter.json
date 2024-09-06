@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "format:{meter_id}-{customer}",
+ "autoname": "format:{meter_id}",
  "creation": "2024-07-29 12:44:38.236382",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -73,7 +73,7 @@
    "link_fieldname": "customer_name"
   }
  ],
- "modified": "2024-08-03 22:08:52.336047",
+ "modified": "2024-09-06 15:35:03.382693",
  "modified_by": "Administrator",
  "module": "Water Supply Management",
  "name": "Water Meter",
